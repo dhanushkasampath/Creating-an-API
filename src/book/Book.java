@@ -15,28 +15,23 @@ import javax.ws.rs.core.Response;
 public class Book {
 	@GET
 	@Produces(MediaType.TEXT_XML)
-	@Path("p1/{fname}")
-	public String sayHelloXML(@PathParam("fname") String name,@QueryParam("lname") String lName){
-		System.out.println("Request;"+name);
-		String response="<?xml version='1.0'?>"+
-				"<hello>HELLO"+name+" " +lName+"</hello>";
+	
+	@Path("{name}")
+	public String sayHelloXML(@PathParam("name") String name){
+		
+		String response="<hello>HELLO "+name+"</hello>";
+		
 		return response;
 	}
 	
-	@POST
+	/*@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{fname}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response sayHelloXML2(@PathParam("fname") String name,@QueryParam("lname") String lName,BookInfo b){
-		System.out.println("Request;"+name);
+	
+	public Response sayHelloXML2(@PathParam("fname") String name,@QueryParam("lname") String lName,BookInfo b){		
 
 		return Response.status(201).entity(new BookResp(b.getName(),b.getTitle())).build();
-	}
-	/*@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public String sayHelloJSON(){
-		
-		String response=null;
-		return response;
 	}*/
+
 }
